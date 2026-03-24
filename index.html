@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MP Class 11 Result</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  text-align: center;
+  color: white;
+}
+
+.box {
+  margin-top: 80px;
+  background: rgba(0,0,0,0.5);
+  padding: 30px;
+  border-radius: 15px;
+  display: inline-block;
+  width: 300px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #00e676;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#captchaBox {
+  font-size: 24px;
+  letter-spacing: 4px;
+  background: #000;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>MP Board Class 11 Result</h2>
+
+  <input type="number" id="roll" placeholder="Enter Roll Number"><br>
+
+  <div id="captchaBox"></div><br>
+  <input type="text" id="captchaInput" placeholder="Enter Captcha"><br>
+
+  <button onclick="checkResult()">Check Result</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+let captcha = "";
+
+// Generate Captcha
+function generateCaptcha() {
+  let chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  captcha = "";
+  for (let i = 0; i < 6; i++) {
+    captcha += chars[Math.floor(Math.random() * chars.length)];
+  }
+  document.getElementById("captchaBox").innerText = captcha;
+}
+
+// Check Result
+function checkResult() {
+  let roll = Number(document.getElementById("roll").value);
+  let userCaptcha = document.getElementById("captchaInput").value;
+
+  let min = 11267210430201;
+  let max = 11267210430284;
+
+  // Roll Validation
+  if (!roll || roll < min || roll > max) {
+    document.getElementById("result").innerHTML = "❌ Invalid Roll Number!";
+    generateCaptcha();
+    return;
+  }
+
+  // Captcha Validation
+  if (userCaptcha !== captcha) {
+    document.getElementById("result").innerHTML = "❌ Wrong Captcha!";
+    generateCaptcha();
+    return;
+  }
+
+  // Fake Result Generator 😎
+  let marks = Math.floor(Math.random() * 40) + 60;
+
+  document.getElementById("result").innerHTML =
+    "Roll No: " + roll +
+    "<br>Class: 11th" +
+    "<br>Status: PASS 🎉" +
+    "<br>Percentage: " + marks + "%";
+
+  generateCaptcha();
+}
+
+// Load first captcha
+generateCaptcha();
+</script>
+
+</body>
+</html>
