@@ -1,79 +1,6 @@
 # MP-Risult
 Mp katni risult
 <input type="number" id="roll" placeholder="Enter Roll Number">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>MP Class 11 Result</title>
-
-<style>
-body {
-  font-family: Arial;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  text-align: center;
-  color: white;
-}
-
-.box {
-  margin-top: 80px;
-  background: rgba(0,0,0,0.5);
-  padding: 30px;
-  border-radius: 15px;
-  display: inline-block;
-}
-
-input {
-  padding: 10px;
-  margin: 10px;
-  width: 80%;
-  border-radius: 5px;
-  border: none;
-}
-
-button {
-  padding: 10px 20px;
-  background: #00e676;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#captchaBox {
-  font-size: 24px;
-  letter-spacing: 4px;
-  background: black;
-  padding: 10px;
-  display: inline-block;
-  border-radius: 5px;
-}
-
-#result {
-  margin-top: 20px;
-  font-size: 18px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box">
-  <h2>MP Board Class 11 Result</h2>
-
-  <!-- Roll Number Input -->
-  <input type="number" id="roll" placeholder="Enter Roll Number"><br>
-
-  <!-- Captcha -->
-  <div id="captchaBox"></div><br>
-  <input type="text" id="captchaInput" placeholder="Enter Captcha"><br>
-
-  <button onclick="checkResult()">Check Result</button>
-
-  <div id="result"></div>
-</div>
-
 <script>
 let captcha = "";
 
@@ -85,6 +12,22 @@ function generateCaptcha() {
     captcha += chars[Math.floor(Math.random() * chars.length)];
   }
   document.getElementById("captchaBox").innerText = captcha;
+}
+
+// Seeded random (fixed per roll)
+function seededRandom(seed) {
+  let x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+// Generate result from roll
+function getResult(roll) {
+  let rand = seededRandom(roll);
+
+  let percentage = Math.floor(rand * 41) + 60; // 60–100
+  let status = percentage >= 33 ? "PASS 🎉" : "FAIL ❌";
+
+  return { percentage, status };
 }
 
 // Check result
@@ -107,13 +50,13 @@ function checkResult() {
     return;
   }
 
-  let percentage = Math.floor(Math.random() * 40) + 60;
+  let resultData = getResult(roll);
 
   document.getElementById("result").innerHTML =
     "Roll No: " + roll +
     "<br>Class: 11th" +
-    "<br>Status: PASS 🎉" +
-    "<br>Percentage: " + percentage + "%";
+    "<br>Status: " + resultData.status +
+    "<br>Percentage: " + resultData.percentage + "%";
 
   generateCaptcha();
 }
@@ -121,6 +64,3 @@ function checkResult() {
 // First load
 generateCaptcha();
 </script>
-
-</body>
-</html>
