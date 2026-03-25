@@ -1,54 +1,6 @@
 # MP-Risult
 Mp katni risult
 <input type="number" id="roll" placeholder="Enter Roll Number">
-<script>
-let captcha = "";
-
-// Captcha
-function generateCaptcha() {
-  let chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  captcha = "";
-  for (let i = 0; i < 6; i++) {
-    captcha += chars[Math.floor(Math.random() * chars.length)];
-  }
-  document.getElementById("captchaBox").innerText = captcha;
-}
-
-// Result fix (same roll = same result)
-function getResult(roll) {
-  let num = roll % 100;
-  return 60 + (num % 41); // 60–100
-}
-
-// Check
-function checkResult() {
-  let roll = Number(document.getElementById("roll").value);
-  let userCaptcha = document.getElementById("captchaInput").value;
-
-  if (roll < 11267210430201 || roll > 11267210430284) {
-    document.getElementById("result").innerHTML = "❌ Invalid Roll Number!";
-    generateCaptcha();
-    return;
-  }
-
-  if (userCaptcha !== captcha) {
-    document.getElementById("result").innerHTML = "❌ Wrong Captcha!";
-    generateCaptcha();
-    return;
-  }
-
-  let percentage = getResult(roll);
-
-  document.getElementById("result").innerHTML =
-    "Roll No: " + roll +
-    "<br>Result: PASS 🎉" +
-    "<br>Percentage: " + percentage + "%";
-
-  generateCaptcha();
-}
-
-generateCaptcha();
->
 <!DOCTYPE html>
 <html>
 <head>
