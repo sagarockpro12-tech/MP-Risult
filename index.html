@@ -4,7 +4,7 @@ Mp katni risult
 <script>
 let captcha = "";
 
-// Captcha generate
+// Captcha
 function generateCaptcha() {
   let chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   captcha = "";
@@ -14,31 +14,18 @@ function generateCaptcha() {
   document.getElementById("captchaBox").innerText = captcha;
 }
 
-// Seeded random (fixed per roll)
-function seededRandom(seed) {
-  let x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-}
-
-// Generate result from roll
+// Result fix (same roll = same result)
 function getResult(roll) {
-  let rand = seededRandom(roll);
-
-  let percentage = Math.floor(rand * 41) + 60; // 60–100
-  let status = percentage >= 33 ? "PASS 🎉" : "FAIL ❌";
-
-  return { percentage, status };
+  let num = roll % 100;
+  return 60 + (num % 41); // 60–100
 }
 
-// Check result
+// Check
 function checkResult() {
   let roll = Number(document.getElementById("roll").value);
   let userCaptcha = document.getElementById("captchaInput").value;
 
-  let min = 11267210430201;
-  let max = 11267210430284;
-
-  if (!roll || roll < min || roll > max) {
+  if (roll < 11267210430201 || roll > 11267210430284) {
     document.getElementById("result").innerHTML = "❌ Invalid Roll Number!";
     generateCaptcha();
     return;
@@ -50,17 +37,15 @@ function checkResult() {
     return;
   }
 
-  let resultData = getResult(roll);
+  let percentage = getResult(roll);
 
   document.getElementById("result").innerHTML =
     "Roll No: " + roll +
-    "<br>Class: 11th" +
-    "<br>Status: " + resultData.status +
-    "<br>Percentage: " + resultData.percentage + "%";
+    "<br>Result: PASS 🎉" +
+    "<br>Percentage: " + percentage + "%";
 
   generateCaptcha();
 }
 
-// First load
 generateCaptcha();
 </script>
