@@ -4,108 +4,79 @@ Mp katni risult
 <!DOCTYPE html>
 <html>
 <head>
-<title>Result</title>
+    <title>Class 11 Math Result</title>
 
-<style>
-body {
-  text-align: center;
-  font-family: Arial;
-  background: lightblue;
-}
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
 
-.box {
-  margin-top: 100px;
-}
+        h1 {
+            margin-top: 20px;
+        }
 
-input {
-  padding: 10px;
-}
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-button {
-  padding: 10px;
-}
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
 
-#result {
-  margin-top: 20px;
-  font-size: 22px;
-  font-weight: bold;
-}
-</style>
+        th {
+            background: #333;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Check Result</h2>
+    <h1>📊 Class 11 Science Maths Result</h1>
+    <h3>GHSS EX. BADWARA</h3>
 
-  <input type="number" id="roll" placeholder="Enter Roll Number">
-  <br><br>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Percentage</th>
+            <th>Total Marks</th>
+        </tr>
 
-  <button onclick="showResult()">Check</button>
+        <tr><td>1</td><td>Megha Yadav</td><td>85.8%</td><td>429</td></tr>
+        <tr><td>2</td><td>Sandhya Kushwaha</td><td>78.4%</td><td>392</td></tr>
+        <tr><td>3</td><td>Mohni Kevat</td><td>77.4%</td><td>387</td></tr>
+        <tr><td>4</td><td>Sajita Yadav</td><td>75.4%</td><td>377</td></tr>
+        <tr><td>5</td><td>Kanchan Soni</td><td>74.8%</td><td>374</td></tr>
+        <tr><td>6</td><td>Janvi Kushwaha</td><td>73.4%</td><td>367</td></tr>
+        <tr><td>7</td><td>Shekh Asraf</td><td>72.2%</td><td>361</td></tr>
+        <tr><td>8</td><td>Sachin Kumar</td><td>71.8%</td><td>359</td></tr>
+        <tr><td>9</td><td>Sarla Vishwakarma</td><td>70.2%</td><td>351</td></tr>
+        <tr><td>10</td><td>Mahima Chaudhary</td><td>70%</td><td>350</td></tr>
+        <tr><td>11</td><td>Vivek Raidas</td><td>69.2%</td><td>346</td></tr>
+        <tr><td>12</td><td>Mahesh Kumar</td><td>67.4%</td><td>337</td></tr>
+        <tr><td>13</td><td>Arjun Chaudhary</td><td>67.2%</td><td>336</td></tr>
+        <tr><td>14</td><td>Shashwatam Mourya</td><td>65.6%</td><td>328</td></tr>
+        <tr><td>15</td><td>Sagar Singh</td><td>63.6%</td><td>318</td></tr>
+        <tr><td>16</td><td>Sneha Kewat</td><td>63.4%</td><td>317</td></tr>
+        <tr><td>17</td><td>Shekh Mohammad</td><td>62.8%</td><td>314</td></tr>
+        <tr><td>18</td><td>Guddu Sahu</td><td>58%</td><td>290</td></tr>
 
-  <div id="result"></div>
-</div>
-
-<script>
-
-// Real random but fixed 😎
-function getResult(roll) {
-  let seed = 0;
-
-  // roll number ke har digit mix karo
-  let str = roll.toString();
-  for (let i = 0; i < str.length; i++) {
-    seed += str.charCodeAt(i) * (i + 1);
-  }
-
-  // complex random formula
-  let random = Math.abs(Math.sin(seed) * 10000);
-
-  let percent = Math.floor(random % 41) + 60; // 60–100
-
-  return percent;
-}
-
-function showResult() {
-  let roll = document.getElementById("roll").value;
-
-  if (!roll) {
-    document.getElementById("result").innerHTML = "Roll number daalo!";
-    return;
-  }
-
-  let percent = getResult(roll);
-
-  document.getElementById("result").innerHTML =
-    "Roll No: " + roll +
-    "<br>Result: PASS 🎉" +
-    "<br>Percentage: " + percent + "%";
-}
-
-</script>
+    </table>
 
 </body>
-</html><script>
-
-function getResult(roll) {
-
-  // 🔥 Special case
-  if (roll == 11267210430244) {
-    return 97;
-  }
-
-  // बाकी सब के लिए random जैसा fixed
-  let seed = 0;
-  let str = roll.toString();
-
-  for (let i = 0; i < str.length; i++) {
-    seed += str.charCodeAt(i) * (i + 1);
-  }
-
-  let random = Math.abs(Math.sin(seed) * 10000);
-  let percent = Math.floor(random % 41) + 60; // 60–100
-
-  return percent;
-}
-
-</script>
+</html>
